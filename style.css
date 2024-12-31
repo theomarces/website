@@ -1,0 +1,192 @@
+@font-face {
+    font-family: SuisseScreen-Lightitalic;
+    src: url('FONT/SuisseScreen-Lightitalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: SuisseScreen-Medium;
+    src: url('FONT/SuisseScreen-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: SuisseWorks-Medium;
+    src: url('FONT/SuisseWorks-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
+/* Cela garantit que les dimensions de l'élément incluent padding et border */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+
+}
+.container {
+    display: flex;
+    height: 100vh;; /* Hauteur de l'écran (100% de la fenêtre) */
+    width: 100vw;
+    padding: 20px;
+}
+
+
+/* Colonne de gauche */
+.column-left {
+    width: 10%;               /* Fixe la largeur de la colonne gauche à 20% */
+    padding: 10px;            /* Espacement interne */
+    height: 100vh;            /* Hauteur de la colonne = hauteur de la fenêtre */
+    overflow-y: auto;         /* Permet le défilement vertical si nécessaire */
+    box-sizing: border-box;   /* Inclut padding et bordure dans la largeur totale */
+    position: relative;       /* Nécessaire pour le pseudo-élément ::after */
+    min-width: 10%;           /* Garantit que la largeur ne devient pas inférieure à 20% */
+    justify-content: space-between; /* Place l'espace entre les éléments */
+
+
+    font-family: SuisseScreen-Monitor;
+    font-size: 18pt; /* Taille de la police */
+    line-height: 23pt; /* Hauteur de ligne proportionnelle */
+}
+/* Ajout du pseudo-élément ::after pour créer un dégradé fixe à droite de la colonne */
+.column-left::after {
+    content: "";
+    position: absolute; /* Positionnement fixe par rapport à la fenêtre */
+    top: 0px; /* Positionné en haut de la fenêtre */
+    right: 0; /* Positionné à droite de la fenêtre */
+    width: 10px; /* Largeur du filet dégradé */
+    height: 100vh; /* Hauteur de l'écran (100% de la fenêtre) */
+    background: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%); /* Dégradé de noir à transparent */
+}
+
+/* Style des boutons */
+button {
+    background: none;        /* Retire l'arrière-plan */
+    border: none;            /* Retire la bordure */
+    padding: 0;              /* Retire l'espacement interne (padding) */
+    cursor: pointer;        /* Change le curseur en pointeur */
+    text-decoration: none;   /* Enlève toute décoration de texte (comme le soulignement) */
+    
+    font-family: SuisseScreen-Medium;
+    font-size: 17pt; /* Taille de la police */
+    line-height: 25pt; /* Hauteur de ligne proportionnelle */
+}
+/* Au survol, le texte du bouton devient souligné */
+button:hover {
+    font-family: SuisseScreen-Medium;
+    text-decoration: underline;  /* Souligner le texte au survol */
+}
+/* Style du bouton actif */
+button.active {
+    font-family: SuisseScreen-Medium;
+    text-decoration: underline;  /* Souligner le texte au survol */
+
+}
+
+
+/* CSS */
+@media (max-width: 768px) { /* Modifier selon la taille que vous souhaitez */
+    .sidebar { /* Classe de la colonne de classification */
+        display: none; /* Masquer la colonne */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+.column-right {
+    flex-grow: 1;             /* La colonne de droite prend le reste de l'espace */
+    overflow-y: auto; /* Permet de défiler si le contenu dépasse la hauteur */
+    padding-left: 20px;
+    padding-right: 20px;
+
+
+
+  }
+
+  .column-right p {
+    text-align: right;
+    font-family: SuisseScreen-Lightitalic;
+    font-size: 9pt; /* Taille de la police */
+  }
+
+  a {
+    color: black;            /* Le texte des liens sera en noir */
+    text-decoration: none;   /* Pas de soulignement sur les liens */
+}
+
+
+  figcaption { 
+    font-family: SuisseScreen-Lightitalic;
+    font-size: 13pt; /* Taille de la police */
+    line-height: 18pt; /* Hauteur de ligne proportionnelle */
+}
+
+.grid1 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+    gap: 20px;
+  }
+  .grid1 img {
+    width: 100%;
+  }
+  
+
+
+
+
+
+
+
+
+
+  /* Masquer la colonne de gauche sur les petits écrans */
+@media (max-width: 1580px) {
+    .column-left{
+        display: none; /* Cache complètement la colonne de gauche */
+    }
+
+    .grid1 {
+        width: 100%; /* Occupe toute la largeur disponible pour les photos */
+        padding-left: 0; /* Ajuste l'espacement */
+    }
+
+    /* Pour assurer que les photos prennent toute la largeur de l'écran sur mobile */
+    .image {
+        width: 100%; /* Les images doivent occuper toute la largeur */
+    }
+}
+
+
+
+
+/* Responsive : sur petits écrans, ajuster la grille */
+@media (max-width: 768px) {
+    .image {
+        width: calc(100% - 20px); /* Prend toute la largeur disponible - 10px de chaque côté */
+        margin-left: 10px;
+        margin-right: 10px;
+                padding: 0; /* Retirer tout padding supplémentaire */
+
+    }
+    .grid1 {
+        padding: 0; /* Retirer tout padding supplémentaire */
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(125px,1fr));
+    }
+
+figcaption { 
+    font-family: SuisseScreen-Lightitalic;
+    font-size: 10pt; /* Taille de la police */
+    line-height: 18pt; /* Hauteur de ligne proportionnelle */
+}
+}
